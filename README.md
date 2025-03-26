@@ -11,6 +11,12 @@ A modern bulletin board system built with Node.js, Fastify, and React.
 - RESTful API with Fastify
 - MongoDB database
 - Environment-based configuration
+- Comprehensive test coverage
+
+## Screenshots
+
+![Main Page](docs/img.png)
+![Post Detail](docs/img_1.png)
 
 ## Tech Stack
 
@@ -20,6 +26,7 @@ A modern bulletin board system built with Node.js, Fastify, and React.
 - MongoDB (Database)
 - Mongoose (ODM)
 - dotenv (Environment Variables)
+- Jest (Testing Framework)
 
 ### Frontend
 - React
@@ -37,7 +44,7 @@ A modern bulletin board system built with Node.js, Fastify, and React.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/node_bbs.git
+git clone https://github.com/akageun/node_bbs_with_cursor.git
 cd node_bbs
 ```
 
@@ -103,6 +110,41 @@ cd ..
 npm start
 ```
 
+## Testing
+
+### Running Tests
+
+Run all tests:
+```bash
+npm test
+```
+
+Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+Run tests with coverage report:
+```bash
+npm run test:coverage
+```
+
+### Test Coverage
+
+The project includes comprehensive test coverage for the backend API endpoints:
+
+- GET /api/posts
+- POST /api/posts
+- GET /api/posts/:id
+- POST /api/posts/:id/like
+- POST /api/posts/:id/unlike
+
+Each endpoint is tested for:
+- Successful responses
+- Error handling
+- Data validation
+- Edge cases
+
 ## API Endpoints
 
 ### Posts
@@ -126,6 +168,10 @@ node_bbs/
 │   │   └── postRoutes.js
 │   ├── schemas/
 │   │   └── postSchema.js
+│   ├── test/
+│   │   └── testServer.js
+│   ├── __tests__/
+│   │   └── post.test.js
 │   └── server.js
 ├── frontend/
 │   ├── src/
@@ -135,6 +181,7 @@ node_bbs/
 │   └── package.json
 ├── .env
 ├── .gitignore
+├── jest.config.js
 ├── package.json
 └── README.md
 ```
@@ -156,3 +203,4 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 - Fastify team for the amazing web framework
 - React team for the frontend library
 - MongoDB team for the database
+- Jest team for the testing framework
