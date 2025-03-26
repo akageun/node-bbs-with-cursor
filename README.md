@@ -204,3 +204,65 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 - React team for the frontend library
 - MongoDB team for the database
 - Jest team for the testing framework
+
+## Docker Support
+
+### Running with Docker Compose
+
+1. Build and start the application:
+```bash
+docker-compose up --build
+```
+
+2. Run tests:
+```bash
+docker-compose run --rm test
+```
+
+3. Stop the application:
+```bash
+docker-compose down
+```
+
+### Docker Commands
+
+Build the application:
+```bash
+docker build -t node-bbs .
+```
+
+Run the application:
+```bash
+docker run -p 3000:3000 node-bbs
+```
+
+Run tests:
+```bash
+docker build -t node-bbs-test -f Dockerfile.test .
+docker run node-bbs-test
+```
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration. The CI pipeline includes:
+
+- Running tests
+- Code linting
+- Test coverage reporting
+- Docker build verification
+
+The pipeline runs on:
+- Push to main branch
+- Pull requests to main branch
+
+### CI Pipeline Steps
+
+1. **Test Job**
+   - Sets up Docker Buildx
+   - Builds and runs tests in Docker container
+   - Uploads test coverage report as artifact
+
+2. **Lint Job**
+   - Sets up Node.js environment
+   - Installs dependencies
+   - Runs ESLint

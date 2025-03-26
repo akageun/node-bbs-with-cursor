@@ -1,6 +1,25 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/bbs
+      - MONGODB_USER=root
+      - MONGODB_PASSWORD=1234
+      - PORT=3000
+      - HOST=0.0.0.0
+      - CORS_ORIGIN=http://localhost:5173
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
+
   mongodb:
     image: mongo:latest
     container_name: bbs-mongodb
@@ -9,8 +28,23 @@ services:
     volumes:
       - mongodb_data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password123
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/bbs_test
+      - MONGODB_USER=root
+      - MONGODB_PASSWORD=1234
+      - NODE_ENV=test
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
 
 volumes:
   mongodb_data: 
